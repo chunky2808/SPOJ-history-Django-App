@@ -5,12 +5,15 @@ from datetime import datetime
 from multiprocessing import Pool
 from operator import itemgetter
 
-def link_generate(name_question):
+list_links = []
+
+
+def link_generate(name_question,user):
 	for name_question in name_question:
 		if name_question == '':
 			a =1
 		else:
-			quote_page = "http://www.spoj.com/status/%s,chunky_2808/"%name_question #Replace it with your user name
+			quote_page = "http://www.spoj.com/status/%s,%s/"%(name_question,user) #Replace it with your user name
 			list_links.append(quote_page)
 						
 
@@ -25,14 +28,15 @@ def crawl(name_question):
 		name_box  = soup.find_all("td", class_="status_sm")[-1]
 		name = name_box.text.replace('\n','')#time
 		l.update({"time" : name, "name" : name_question})#inserting in list (time of submit ,name of question)
-		return l
 		#print(l)
+		return l
+		
 #crawling pages by link from list
 
 def main(user):
 	startTime = datetime.now()
 
-	quote_page = "http://www.spoj.com/users/chunky_2808/" #Replace it with your user name
+	quote_page = "http://www.spoj.com/users/%s/"%user #Replace it with your user name
 
 	page = urllib2.urlopen(quote_page)
 	soup = BeautifulSoup(page, "html.parser")
@@ -49,22 +53,22 @@ def main(user):
 	i=0
 
 
-	list_links = []
-	link_generate(name_question)
+	link_generate(name_question,user)
 	#print(list_links)
 
 	with Pool(10) as p:
 	    ans = p.map(crawl,list_links)
 
 	ans.sort(key=itemgetter('time'))
-	#print(ans)
+	# #print(ans)
 
-	for ans in ans:
-		print(ans['name'])
-		f = open('submission_list.csv', 'a')
-		f.write(ans['name'])
-		f.write('\n')
+	# for ans in ans:
+	# 	#print(ans['name'])
+	# 	f = open('submission_list.csv', 'a')
+	# 	f.write(ans['name'])
+	# 	f.write('\n')
 			
 	print("Time taken in crawling account")
 	print(datetime.now() - startTime)	#time taken
+	return(ans)
 
