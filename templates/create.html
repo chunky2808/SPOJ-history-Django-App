@@ -3,8 +3,9 @@
 <body>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Post</button>
+   <center> {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Post</button></center>
+    <center><h6> Total no of hits : {{hits}} </h6></center>
   </form>
 </body>
 </html>  
