@@ -4,12 +4,16 @@ from .Spoj_with_multithreading import main
 from .forms import NewTopicForm
 from .models import jain
 
+
+hits=0 
+
 def home(request):
-	hit = jain.objects.filter(hit)
+	hit = jain.objects.filter(id=1)
 	for hit in hit:
 		hits = hit.hits
-		print(hits)
-	print(hits)
+	#print(hits)
+	hits = hits +1
+	jain.objects.filter(id=1).update(hits=hits)
 	if request.method == 'POST':
 		form = NewTopicForm(request.POST)
 		if form.is_valid():

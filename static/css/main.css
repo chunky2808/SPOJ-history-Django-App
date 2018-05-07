@@ -1,0 +1,28 @@
+body {
+	padding-top:60px
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.btn{
+position: absolute;
+    top: 50%;
+	min-width:420px;
+}
+
+.wrapper {
+    text-align: center;
+}
+.logo {
+  font-family: 'Indie Flower', cursive;
+}
+
+.logo a {
+  color: rgba(0,0,0,.9);
+}
+
+
+
+.logo a:hover,
+.logo a:active {
+  text-decoration: none;
+}

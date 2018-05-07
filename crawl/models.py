@@ -6,5 +6,5 @@ class paras(models.Model):
 		return self.name
 
 class jain(models.Model):
-	hits = models.IntegerField()		
+	hits = models.IntegerField(default=0)
 # Create your models here.
