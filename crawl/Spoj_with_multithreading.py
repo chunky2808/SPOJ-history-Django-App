@@ -44,13 +44,39 @@ def main(user):
 	name_question = [] #list of solved problems
 
 	#extract name of question from main page of user
-	for name in soup.find_all('td'):
-			name_question.append(name.text)
-	#extract name of question from main page of user
+	#print(soup.find_all("table", class_="table table-condensed"))
+
+	for name in soup.find_all("table", class_="table table-condensed"):
+		name = name.text.replace('\n',' ')
+		#print(name)
+		a = len(name)
+		c=0
+		d=0
+		lis = []
+		for b in range(a):
+			if(name[b]!=' '):
+				if(c==0):
+					lis.append(name[b])
+					c+=1
+				elif(d==0 and c!=0):
+					lis.append(name[b])
+			elif(name[b]==' ' and c!=0):
+				c=0
+				my = ''.join(lis)
+				print(my)
+				lis = []
+				name_question.append(my)			
+
+		#print(name_question)
+
+	# for name in soup.find_all('td'):
+	# 		name_question.append(name.text)
+	# #extract name of question from main page of user
 
 
 	#as each url has fixed pattern , exploit that property and go to each problem page(open the page) and scrap time of each page in dictonary along with their name
 	i=0
+	ans = []
 
 
 	link_generate(name_question,user)
