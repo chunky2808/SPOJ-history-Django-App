@@ -5,10 +5,11 @@ from datetime import datetime
 from multiprocessing import Pool
 from operator import itemgetter
 
-list_links = []
+ans = []
+name_question = []
 
 
-def link_generate(name_question,user):
+def link_generate(name_question,user,list_links):
 	for name_question in name_question:
 		if name_question == '':
 			a =1
@@ -42,6 +43,8 @@ def main(user):
 	soup = BeautifulSoup(page, "html.parser")
 
 	name_question = [] #list of solved problems
+
+	list_links=[]
 
 	#extract name of question from main page of user
 	#print(soup.find_all("table", class_="table table-condensed"))
@@ -77,10 +80,10 @@ def main(user):
 	#as each url has fixed pattern , exploit that property and go to each problem page(open the page) and scrap time of each page in dictonary along with their name
 	i=0
 	ans = []
+	print(name_question)
 
-
-	link_generate(name_question,user)
-	#print(list_links)
+	link_generate(name_question,user,list_links)
+	print(list_links)
 
 	with Pool(10) as p:
 	    ans = p.map(crawl,list_links)

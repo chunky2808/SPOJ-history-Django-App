@@ -19,13 +19,13 @@ def home(request):
 		if form.is_valid():
 			new = form.save(commit=False)
 			new.save()
-			print(new.name)
+			#print(new.name)
 			ans = main(new.name)
 			#print(ans)
 			l = []
 			for ans in ans:
 				l.append(ans['name'])
-			print(l)
+			#print(l)
 			return render(request, 'list_question.html', {'list': l})
 	else:
 		form = NewTopicForm()
