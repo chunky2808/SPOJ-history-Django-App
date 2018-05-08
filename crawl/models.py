@@ -1,9 +1,9 @@
 from django.db import models
 
 class paras(models.Model):
-	name = models.CharField(max_length = 140)
+	Spoj_Handle = models.CharField(max_length = 140)
 	def __str__(self):
-		return self.name
+		return self.Spoj_Handle
 
 class jain(models.Model):
 	hits = models.IntegerField(default=0)

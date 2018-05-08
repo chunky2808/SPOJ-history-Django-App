@@ -20,7 +20,7 @@ def home(request):
 			new = form.save(commit=False)
 			new.save()
 			#print(new.name)
-			ans = main(new.name)
+			ans = main(new.Spoj_Handle)
 			#print(ans)
 			l = []
 			for ans in ans:
