@@ -1,9 +1,11 @@
+
 import urllib.request as urllib2
 from bs4 import BeautifulSoup
 import collections
 from datetime import datetime
 from multiprocessing import Pool
 from operator import itemgetter
+import multiprocessing 
 
 ans = []
 name_question = []
@@ -30,13 +32,12 @@ def crawl(name_question):
 		name = name_box.text.replace('\n','')#time
 		l.update({"time" : name, "name" : name_question})#inserting in list (time of submit ,name of question)
 		#print(l)
-		return l
+		return l	
 		
 #crawling pages by link from list
 
 def main(user):
-	startTime = datetime.now()
-
+	
 	quote_page = "http://www.spoj.com/users/%s/"%user #Replace it with your user name
 
 	page = urllib2.urlopen(quote_page)
@@ -85,9 +86,14 @@ def main(user):
 
 	link_generate(name_question,user,list_links)
 	print(list_links)
+	startTime = datetime.now()
 
-	with Pool(10) as p:
-	    ans = p.map(crawl,list_links)
+	with Pool(processes=10) as p:
+		ans = p.map(crawl,list_links)
+		p.close()
+		p.join()
+	print(datetime.now() - startTime)	#time taken
+	
 
 	ans.sort(key=itemgetter('time'))
 	# #print(ans)
@@ -101,4 +107,3 @@ def main(user):
 	print("Time taken in crawling account")
 	print(datetime.now() - startTime)	#time taken
 	return(ans)
-

@@ -12,16 +12,26 @@ body {
     font-family: Arial;
     font-size: 17px;
 }
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
 </style>
 </head>
 <body>
+
+<div class="card" style="width: 32rem;">
+  <div class="card-body">	
 {% for list in list %}
-<center><a href ="{{list}}">{{list}}</a></center>
+<p class="card-text"><a href ="{{list}}">{{list}}</a></p>
 <p></p>
 {% endfor %}
+</div>
+</div>
 
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
-</html>  
+</html>
