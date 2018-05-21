@@ -34,6 +34,12 @@ def home(request):
 
 	
 def tags(request):
+	hit = jain.objects.filter(id=1)
+	for hit in hit:
+		hits = hit.hits
+	#print(hits)
+	hits = hits +1
+	jain.objects.filter(id=1).update(hits=hits)
 	if request.method == 'POST':
 		form = NewTopicForm2(request.POST)
 		if form.is_valid():
