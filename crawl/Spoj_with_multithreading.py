@@ -37,7 +37,7 @@ def crawl(name_question):
 #crawling pages by link from list
 
 def main(user):
-	
+	print("hi")
 	quote_page = "http://www.spoj.com/users/%s/"%user #Replace it with your user name
 
 	page = urllib2.urlopen(quote_page)
@@ -71,7 +71,7 @@ def main(user):
 				lis = []
 				name_question.append(my)			
 
-		#print(name_question)
+	#print(name_question)
 
 	# for name in soup.find_all('td'):
 	# 		name_question.append(name.text)

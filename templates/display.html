@@ -1,0 +1,30 @@
+{% load static %}<html>
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+ 
+<style>
+
+body {
+
+  background-image: url(/static/img/c.gif);
+    margin: 0;
+    font-family: Arial;
+    font-size: 17px;
+}
+</style>
+</head>
+<body>
+	<p></p>
+<form method="post">
+    {% csrf_token %}
+   <center> {{ form.as_p }}</center>
+   <center><button type="button">Submit</button></center>
+   <p></p>
+  </form>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>  

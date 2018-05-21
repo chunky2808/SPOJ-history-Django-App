@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .Spoj_with_multithreading import main
-from .forms import NewTopicForm
-from .models import jain
+from .Spoj_with_multithreading import main as mai
+from .forms import NewTopicForm,NewTopicForm2
+from .models import jain,ta
+from .sort_question_tags import main
 
 
 hits=0 
@@ -19,9 +20,9 @@ def home(request):
 		if form.is_valid():
 			new = form.save(commit=False)
 			new.save()
-			#print(new.name)
-			ans = main(new.Spoj_Handle)
-			#print(ans)
+			#print(new.Spoj_Handle)
+			ans = mai(new.Spoj_Handle)
+			print(ans)
 			l = []
 			for ans in ans:
 				l.append(ans['name'])
@@ -32,3 +33,15 @@ def home(request):
 	return render(request, 'create.html', {'form': form,'hits':hits})
 
 	
+def tags(request):
+	if request.method == 'POST':
+		form = NewTopicForm2(request.POST)
+		if form.is_valid():
+			new = form.save(commit=False)
+			new.save()
+			ans = main(new.name)
+			print(ans)
+		return render(request, 'display_tag.html', {'list': ans})
+	else:
+		form = NewTopicForm2()
+	return render(request, 'display.html', {'form': form})

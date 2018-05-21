@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from crawl.views import home
+from crawl.views import home,tags
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
  	url(r'^$',home),
+ 	url(r'^tags/$',tags),
      
 ]

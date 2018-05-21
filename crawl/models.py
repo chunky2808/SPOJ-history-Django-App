@@ -8,3 +8,6 @@ class paras(models.Model):
 class jain(models.Model):
 	hits = models.IntegerField(default=0)
 # Create your models here.
+
+class ta(models.Model):
+	name = models.CharField(max_length=140)
