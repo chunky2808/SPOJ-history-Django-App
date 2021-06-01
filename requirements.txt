@@ -16,6 +16,6 @@ python-dateutil==1.5
 pytz==2018.4
 requests==2.18.4
 SQLAlchemy==1.2.7
-urllib3==1.22
+urllib3==1.26.5
 vine==1.1.4
 whitenoise==3.3.1
